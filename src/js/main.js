@@ -1,9 +1,10 @@
 import data from "./data";
+
+import shuffle from "array-shuffle";
+
 import PokemonCard from "./components/PokemonCard";
 
-// data.forEach(Pokemon);
-
-renderPokemon(data);
+renderPokemon(shuffle(data));
 
 // Give list, it will render them
 function renderPokemon(list) {
