@@ -6,7 +6,6 @@ import PokemonCard from "./components/PokemonCard";
 
 // === DOM Targeting ===
 const inputEl = document.querySelector('input[type="text"]');
-console.log(inputEl);
 
 renderPokemon(shuffle(data));
 
@@ -17,9 +16,19 @@ function renderPokemon(list) {
   });
 }
 
+function handleSearch(input) {
+  console.log(input);
+}
+
+inputEl.addEventListener("input", (e) => {
+  handleSearch(e.target.value);
+});
+
 // Add / to active search
-document.addEventListener("keyup", (e) => {
+document.addEventListener("keydown", (e) => {
   if (e.key === "/") {
+    // Don't type
+    e.preventDefault();
     inputEl.focus();
   }
 });
