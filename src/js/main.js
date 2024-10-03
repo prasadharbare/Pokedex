@@ -6,22 +6,30 @@ import PokemonCard from "./components/PokemonCard";
 
 // === DOM Targeting ===
 const inputEl = document.querySelector('input[type="text"]');
+const dataRow = document.querySelector("[data-row]");
 
 renderPokemon(shuffle(data));
 
 // Give list, it will render them
 function renderPokemon(list) {
+  dataRow.textContent = "";
+
   list.forEach((pokemonObj) => {
     PokemonCard(pokemonObj);
   });
 }
 
 function handleSearch(input) {
-  console.log(input);
+  const filteredPokemon = data.filter((pokemonObj) =>
+    pokemonObj.name.toLowerCase().includes(input)
+  );
+
+  renderPokemon(filteredPokemon);
 }
 
 inputEl.addEventListener("input", (e) => {
-  handleSearch(e.target.value);
+  const currentInput = e.target.value.trim().toLowerCase();
+  handleSearch(currentInput);
 });
 
 // Add / to active search
