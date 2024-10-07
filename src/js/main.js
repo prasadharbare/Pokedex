@@ -1,7 +1,5 @@
-import data from "./data";
 import shuffle from "array-shuffle";
-
-// Component
+import data from "./data";
 import PokemonCard from "./components/PokemonCard";
 
 // === DOM Targeting ===
@@ -15,14 +13,16 @@ function renderPokemon(list) {
   dataRow.textContent = "";
 
   list.forEach((pokemonObj) => {
-    PokemonCard(pokemonObj);
+    const pokemon = PokemonCard(pokemonObj);
+    dataRow.appendChild(pokemon);
   });
 }
 
+// Will be invoked on search
 function handleSearch(input) {
-  const filteredPokemon = data.filter((pokemonObj) =>
-    pokemonObj.name.toLowerCase().includes(input)
-  );
+  const filteredPokemon = data.filter((pokemonObj) => {
+    return pokemonObj.name.toLowerCase().includes(input);
+  });
 
   renderPokemon(filteredPokemon);
 }
