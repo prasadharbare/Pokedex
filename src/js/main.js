@@ -1,4 +1,7 @@
+// Packages
 import shuffle from "array-shuffle";
+import Fuse from "fuse.js";
+
 import data from "./data";
 import PokemonCard from "./components/PokemonCard";
 
@@ -20,11 +23,21 @@ function renderPokemon(list) {
 
 // Will be invoked on search
 function handleSearch(input) {
-  const filteredPokemon = data.filter((pokemonObj) => {
-    return pokemonObj.name.toLowerCase().includes(input);
+  // const filteredPokemon = data.filter((pokemonObj) => {
+  //   return pokemonObj.name.toLowerCase().includes(input);
+  // });
+
+  // Create fuse object
+  const fuse = new Fuse(data, {
+    keys: ["name", "description"],
   });
 
-  renderPokemon(filteredPokemon);
+  // Perform search
+  const searched = fuse.search(input);
+
+  // Create without the 'item' key from fuse search
+  const filterdPokemon = searched.map((obj) => obj.item);
+  renderPokemon(filterdPokemon);
 }
 
 inputEl.addEventListener("input", (e) => {
