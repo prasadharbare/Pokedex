@@ -28,15 +28,22 @@ function handleSearch(input) {
   // });
 
   // Create fuse object
-  const fuse = new Fuse(data, {
+  const options = {
     keys: ["name", "description"],
-  });
+    threshold: 0.5,
+  };
+  const fuse = new Fuse(data, options);
 
   // Perform search
-  const searched = fuse.search(input);
+  function performSearch() {
+    if (!input) return data;
+
+    const searched = fuse.search(input);
+    return searched.map((obj) => obj.item);
+  }
 
   // Create without the 'item' key from fuse search
-  const filterdPokemon = searched.map((obj) => obj.item);
+  const filterdPokemon = performSearch();
   renderPokemon(filterdPokemon);
 }
 
