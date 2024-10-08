@@ -29,7 +29,7 @@ function handleSearch(input) {
 
   // Create fuse object
   const options = {
-    keys: ["name", "description"],
+    keys: ["name", "abilities"],
     threshold: 0.5,
   };
   const fuse = new Fuse(data, options);
