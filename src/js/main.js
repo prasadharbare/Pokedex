@@ -57,9 +57,14 @@ function handleSearch(input) {
   renderPokemon(filterdPokemon);
 }
 
+let debounceTimer;
 inputEl.addEventListener("input", (e) => {
-  const currentInput = e.target.value.trim().toLowerCase();
-  handleSearch(currentInput);
+  clearTimeout(debounceTimer);
+
+  debounceTimer = setTimeout(() => {
+    const currentInput = e.target.value.trim().toLowerCase();
+    handleSearch(currentInput);
+  }, 500);
 });
 
 // Add / to active search
