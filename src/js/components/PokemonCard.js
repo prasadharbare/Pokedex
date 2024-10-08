@@ -14,7 +14,7 @@ export default function (data) {
         <div class="card-body">
             <h5 class="card-title">${name}</h5>
             <p class="card-text">${description}</p>
-            <a href="${link}" class="btn btn-warning">Visit</a>
+            ${!link && `<a href="${link}" class="btn btn-warning">Visit</a>`}
         </div>
     </div>
   `;

@@ -15,6 +15,16 @@ renderPokemon(shuffle(data));
 function renderPokemon(list) {
   dataRow.textContent = "";
 
+  if (!list.length) {
+    const pokemon = PokemonCard({
+      name: "Not found",
+      description: "Try another search",
+      image:
+        "https://i.pinimg.com/originals/f8/29/be/f829bed61f75627eea111dfde089fe2c.png",
+    });
+    dataRow.appendChild(pokemon);
+  }
+
   list.forEach((pokemonObj) => {
     const pokemon = PokemonCard(pokemonObj);
     dataRow.appendChild(pokemon);
