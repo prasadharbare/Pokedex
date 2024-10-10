@@ -7,9 +7,10 @@
     "build": "parcel build src/index.html"
   },
   "keywords": [],
-  "author": "",
+  "author": "prasadharbare",
   "license": "ISC",
   "devDependencies": {
+    "@parcel/transformer-sass": "^2.12.0",
     "parcel": "^2.12.0"
   },
   "dependencies": {
